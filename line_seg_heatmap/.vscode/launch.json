@@ -1,0 +1,58 @@
+{
+  // VS Code launch configurations for line_seg_heatmap
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Train – heatmap model",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/train.py",
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}",
+      "args": [
+        "--train-image-dir", "data/train2017",
+        "--train-ann-file",  "data/annotations/instances_train2017.json",
+        "--val-image-dir",   "data/val2017",
+        "--val-ann-file",    "data/annotations/instances_val2017.json",
+        "--epochs", "50",
+        "--batch-size", "8",
+        "--input-size", "512",
+        "--sigma", "16.0",
+        "--base-channels", "32"
+      ],
+      "justMyCode": false
+    },
+    {
+      "name": "Validate – heatmap model",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/val.py",
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}",
+      "args": [
+        "--checkpoint",    "checkpoints/best.pt",
+        "--val-image-dir", "data/val2017",
+        "--val-ann-file",  "data/annotations/instances_val2017.json",
+        "--input-size", "512",
+        "--vis-samples", "8"
+      ],
+      "justMyCode": false
+    },
+    {
+      "name": "Infer – single image",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/val.py",
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}",
+      "args": [
+        "--checkpoint",   "checkpoints/best.pt",
+        "--image",        "data/sample/test_image.jpg",
+        "--output-image", "result.png",
+        "--input-size",   "512",
+        "--threshold",    "0.3"
+      ],
+      "justMyCode": false
+    }
+  ]
+}
