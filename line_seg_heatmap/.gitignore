@@ -1,0 +1,20 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Training artefacts
+checkpoints/
+vis/
+val_output/
+*.pt
+*.pth
+
+# OS files
+.DS_Store
+Thumbs.db
